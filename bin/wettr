@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require_relative "../config/environment"
+
+# pass in ARGV to CLI initialize method
+Wettr::CLI.new.run
