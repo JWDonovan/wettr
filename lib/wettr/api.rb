@@ -1,6 +1,6 @@
 class Wettr::API
   include HTTParty
-  debug_output STDOUT
+  # debug_output STDOUT
 
   base_uri "https://api.openweathermap.org"
   default_params appid: ENV["API_KEY"], units: "imperial"

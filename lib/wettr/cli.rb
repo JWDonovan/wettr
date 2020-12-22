@@ -16,13 +16,19 @@ class Wettr::CLI
   end
 
   def parse_args
-    zip = args[args.index("--zip") + 1]
-
-    if !zip.nil?
+    if args.include?("--help")
+      print_help_menu
+    elsif args.include?("--version")
+      puts "wettr #{Wettr::VERSION}"
+    elsif zip = args[args.index("--zip") + 1]
       response = Wettr::API.new.call_by_zip_code(zip)
       response.print
     else
       puts "Please enter a zip code"
     end
+  end
+
+  def print_help_menu
+    puts "Help menu"
   end
 end
