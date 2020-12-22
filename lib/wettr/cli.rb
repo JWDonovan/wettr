@@ -16,10 +16,13 @@ class Wettr::CLI
   end
 
   def parse_args
-    if args.include?("--zip")
-      zip = args[args.index("--zip") + 1]
+    zip = args[args.index("--zip") + 1]
+
+    if !zip.nil?
       response = Wettr::API.new.call_by_zip_code(zip)
       response.print
+    else
+      puts "Please enter a zip code"
     end
   end
 end
