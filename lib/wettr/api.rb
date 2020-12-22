@@ -3,12 +3,11 @@ class Wettr::API
   debug_output STDOUT
 
   base_uri "https://api.openweathermap.org"
-  default_params appid: ENV["API_KEY"]
+  default_params appid: ENV["API_KEY"], units: "imperial"
 
   def call
-    response = self.class.get("/data/2.5/weather", @options)
+    response = Wettr::Response.new_from_api(self.class.get("/data/2.5/weather", @options))
     # puts response.request.last_uri.to_s
-    puts response
   end
 
   def call_by_zip_code(zip_code)

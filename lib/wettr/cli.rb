@@ -19,6 +19,7 @@ class Wettr::CLI
     if args.include?("--zip")
       zip = args[args.index("--zip") + 1]
       response = Wettr::API.new.call_by_zip_code(zip)
+      response.print
     end
   end
 end
