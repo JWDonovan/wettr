@@ -1,4 +1,5 @@
 require "dotenv/load"
+Dotenv.require_keys("API_KEY")
 require "httparty"
 
 module Wettr
