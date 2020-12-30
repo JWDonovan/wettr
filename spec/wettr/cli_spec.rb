@@ -1,34 +1,8 @@
-class Wettr::CLI
-  attr_reader :args
+require "spec_helper"
+require "wettr/cli"
 
-  def initialize(args = nil)
-    @args = args
-  end
-
-  def run
-    if !args.empty?
-      parse_args
-    else
-      ip = Wettr::IP.new_without_ip
-      weather = Wettr::Weather.new_with_lat_and_lon(lat: ip.lat, lon: ip.lon)
-      weather.print
-    end
-  end
-
-  def parse_args
-    if args.include?("--help")
-      print_help_menu
-    elsif args.include?("--version")
-      puts "wettr #{Wettr::VERSION}"
-    elsif zip = args[args.index("--zip") + 1]
-      weather = Wettr::Weather.new_with_zip(zip)
-      weather.print
-    else
-      puts "Please enter a zip code"
-    end
-  end
-
-  def print_help_menu
+RSpec.describe Wettr::CLI do
+  it "prints the help menu" do
     help_text = <<-HELP_TEXT
     Usage:
       wettr [options]
@@ -47,7 +21,19 @@ class Wettr::CLI
       wettr --zip 10001                # Weather by zip/postal code for New York City
       wettr --zip 20001                # Weather by zip/postal code for Washington D.C.
     HELP_TEXT
-    
-    puts help_text
+
+    expect{ Wettr::CLI.new.print_help_menu }.to output(help_text).to_stdout
+  end
+
+  it "has an args attr_reader" do
+    expect(Wettr::CLI.new).respond_to?(:args)
+  end
+
+  it "doesn't have an args attr_accessor" do
+    expect(Wettr::CLI.new).not_to respond_to("args=")
+  end
+
+  it "has nil args if not set in initialize" do
+    expect(Wettr::CLI.new.args).to be_nil
   end
 end
