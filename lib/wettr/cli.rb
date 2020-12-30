@@ -29,6 +29,21 @@ class Wettr::CLI
   end
 
   def print_help_menu
-    puts "Help menu"
+    puts "Usage:"
+    puts "  wettr [options]"
+    puts "\nOptions:"
+    puts "  --help                       # Print this menu"
+    puts "  --version                    # Print the version number"
+    puts "  --zip ZIP_CODE               # Weather by zip/postal code"
+    puts "\nDescription:"
+    puts "  wettr is a command line ruby gem to get current weather information"
+    puts "  using OpenWeatherMap's Current Weather API in conjunction with the" 
+    puts "  IPAPI.co IP adress API."
+    puts "\n  wettr can get current weather data using either a zip/postal code"
+    puts "  or an IP address. Simply type wettr to get started."
+    puts "\nExamples:"
+    puts "  wettr                        # Weather by current IP address location"
+    puts "  wettr --zip 10001            # Weather by zip/postal code for New York City"
+    puts "  wettr --zip 20001            # Weather by zip/postal code for Washington D.C."
   end
 end
