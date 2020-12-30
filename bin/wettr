@@ -2,5 +2,4 @@
 
 require_relative "../config/environment"
 
-# pass in ARGV to CLI initialize method
-Wettr::CLI.new(ARGV).call
+Wettr::CLI.new(ARGV).run

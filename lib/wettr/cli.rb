@@ -5,13 +5,13 @@ class Wettr::CLI
     @args = args
   end
 
-  def call
-    # response = Wettr::API.new.call_by_zip_code(zip_code: 43230, country_code: "gb")
-    # puts response
+  def run
     if !args.empty?
       parse_args
     else
-      puts "Please enter a zip code"
+      ip = Wettr::IP.new_without_ip
+      weather = Wettr::Weather.new_with_lat_and_lon(lat: ip.lat, lon: ip.lon)
+      weather.print
     end
   end
 
@@ -21,8 +21,8 @@ class Wettr::CLI
     elsif args.include?("--version")
       puts "wettr #{Wettr::VERSION}"
     elsif zip = args[args.index("--zip") + 1]
-      response = Wettr::API.new.call_by_zip_code(zip)
-      response.print
+      weather = Wettr::Weather.new_with_zip(zip)
+      weather.print
     else
       puts "Please enter a zip code"
     end
