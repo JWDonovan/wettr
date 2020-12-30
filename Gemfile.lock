@@ -4,7 +4,6 @@ PATH
     wettr (0.1.0)
       dotenv (~> 2.1)
       httparty (~> 0.18.1)
-      rake (~> 13.0)
 
 GEM
   remote: https://rubygems.org/
@@ -44,6 +43,7 @@ PLATFORMS
 
 DEPENDENCIES
   pry (~> 0.13.1)
+  rake (~> 13.0)
   rspec (~> 3.10)
   wettr!
 

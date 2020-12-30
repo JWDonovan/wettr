@@ -7,6 +7,15 @@ class Wettr::IPAPI
 
   def self.call_without_ip
     response = self.get("/json")
+    
+    if response["error"]
+      puts "Encountered the following error with IPAPI.co:"
+      puts response["reason"]
+      puts response["message"]
+
+      exit
+    end
+
     response
   end
 

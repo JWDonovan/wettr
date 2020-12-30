@@ -1,4 +1,6 @@
-require_relative 'lib/wettr/version'
+lib = File.expand_path("lib", __dir__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require_relative "lib/wettr/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "wettr"
@@ -22,11 +24,13 @@ Gem::Specification.new do |spec|
   end
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
+  spec.executables << "wettr"
   spec.require_paths = ["lib"]
 
   spec.add_dependency "dotenv", "~> 2.1"
   spec.add_dependency "httparty", "~> 0.18.1"
-  spec.add_dependency "rake", "~> 13.0"
+  
+  spec.add_development_dependency "rake", "~> 13.0"
   spec.add_development_dependency "rspec", "~> 3.10"
   spec.add_development_dependency "pry", "~> 0.13.1"
 end
