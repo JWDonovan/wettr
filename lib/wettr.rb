@@ -1,11 +1,11 @@
-require "dotenv/load"
-Dotenv.require_keys("API_KEY")
 require "httparty"
+require "yaml"
 
 module Wettr
   class Error < StandardError; end
 end
 
+require_relative "./wettr/config"
 require_relative "./wettr/version"
 require_relative "./wettr/cli"
 require_relative "./wettr/weather"

@@ -3,4 +3,5 @@
 require "bundler/setup"
 require "wettr"
 
+Wettr::Config.start
 Wettr::CLI.new(ARGV).run

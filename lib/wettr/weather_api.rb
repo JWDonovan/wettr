@@ -1,9 +1,7 @@
 class Wettr::WeatherAPI
   include HTTParty
-  # debug_output STDOUT
 
   base_uri "https://api.openweathermap.org"
-  default_params appid: ENV["API_KEY"], units: "imperial"
 
   def self.call_with_lat_and_lon(lat:, lon:)
     @options = { query: { lat: lat, lon: lon } }
@@ -18,7 +16,17 @@ class Wettr::WeatherAPI
   private
   
   def self.call
+    default_params appid: Wettr::Config.API_KEY, units: "imperial"
+    
     response = self.get("/data/2.5/weather", @options)
+
+    if response["cod"] != 200
+      puts "Encountered an error contacting OpenWeatherMap"
+      puts "Returned the following response: #{ response['cod'] }"
+      puts "Message: #{ response['message'] }"
+      exit
+    end
+
     response
   end
 end

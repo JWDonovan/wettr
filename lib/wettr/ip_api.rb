@@ -1,6 +1,5 @@
 class Wettr::IPAPI
   include HTTParty
-  # debug_output STDOUT
 
   base_uri "https://ipapi.co"
   # https://ipapi.co/1.1.1.1/json
